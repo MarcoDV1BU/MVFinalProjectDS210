@@ -1,0 +1,168 @@
+﻿Question: If you invested $5 in bitcoin every single day, how would your portfolio look after six years?
+
+
+Dataset: https://www.kaggle.com/datasets/avinashmynampati/bitcoin-price-and-fear-greed-index-20182024/data
+
+
+With this dataset, no cleaning was required. I simply took the csv and loaded it into rust.
+
+
+Functionality:
+
+
+The struct “BitcoinData” sets up the database and contains all columns in the database along with their data types.
+
+
+The struct “InvestmentResult” contains off of the variables I will be finding and need for the final report.
+
+
+calc_type() runs all of the calculations needed for the final result
+
+
+print_result() sets up all the lines to be printed for a single investment
+
+
+main() uses calc_type() to run all of the calculations for each investment then print_result() to print all of the results
+
+
+Tests: 
+
+
+does_filter_work() adds 3 random days with different sentiments then makes sure the code is filtering out the settlements we don’t want when making its output
+
+
+does_every_other_work()  adds 4 concurrent days to check that when only investing every other day we actually are doing every other day instead of something else like only the first half of the data
+
+
+
+
+Output: 
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s
+     Running unittests src/main.rs (target/debug/deps/finalpro-70d6bb9b81c96343)
+
+
+running 2 tests
+test does_filter_work ... ok
+test does_every_other_work ... ok
+
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+Code Output:
+Based From Bitcoin Fear Greed Index (2018-2024)
+Starting Bitcoin Price: $10237.30
+Final Bitcoin Price: $66925.48
+Total Profit Per Share: $56688.18
+What would happen if you were to invest $5 into bitcoin every day?
+
+
+Investing Every Day
+Days Invested: 2224
+Average Price Per BTC: $22670.55
+Total Invested: $11120.00
+Total Bitcoin: 0.91181 BCT
+Final Value: $61023.59
+Percentage Yield: 448.77%
+Total Profit: $49903.59
+To Profit 10k You Needed To Invest: $1.00 Per Day
+Multiplier: 5.49x
+To Multiply Your Earnings By 5x You Needed To Invest $4.56 Per Day
+
+
+Investing Every Other Day
+Days Invested: 1112
+Average Price Per BTC: $22670.86
+Total Invested: $11120.00
+Total Bitcoin: 0.91215 BCT
+Final Value: $61046.34
+Percentage Yield: 448.98%
+Total Profit: $49926.34
+To Profit 10k You Needed To Invest: $2.00 Per Day
+Multiplier: 5.49x
+To Multiply Your Earnings By 5x You Needed To Invest $9.11 Per Day
+
+
+Investing on Extreme Fear Days Only
+Days Invested: 528
+Average Price Per BTC: $19015.54
+Total Invested: $2640.00
+Total Bitcoin: 0.25984 BCT
+Final Value: $17389.78
+Percentage Yield: 558.70%
+Total Profit: $14749.78
+To Profit 10k You Needed To Invest: $3.39 Per Day
+Multiplier: 6.59x
+To Multiply Your Earnings By 5x You Needed To Invest $3.80 Per Day
+
+
+Investing on Fear Days Only
+Days Invested: 687
+Average Price Per BTC: $16840.82
+Total Invested: $3435.00
+Total Bitcoin: 0.34159 BCT
+Final Value: $22860.88
+Percentage Yield: 565.53%
+Total Profit: $19425.88
+To Profit 10k You Needed To Invest: $2.57 Per Day
+Multiplier: 6.66x
+To Multiply Your Earnings By 5x You Needed To Invest $3.76 Per Day
+
+
+Investing on Neutral Days Only
+Days Invested: 296
+Average Price Per BTC: $23716.14
+Total Invested: $1480.00
+Total Bitcoin: 0.09882 BCT
+Final Value: $6613.32
+Percentage Yield: 346.85%
+Total Profit: $5133.32
+To Profit 10k You Needed To Invest: $9.74 Per Day
+Multiplier: 4.47x
+To Multiply Your Earnings By 5x You Needed To Invest $5.59 Per Day
+
+
+Investing on Greed Days Only
+Days Invested: 513
+Average Price Per BTC: $29980.54
+Total Invested: $2565.00
+Total Bitcoin: 0.16512 BCT
+Final Value: $11050.58
+Percentage Yield: 330.82%
+Total Profit: $8485.58
+To Profit 10k You Needed To Invest: $5.89 Per Day
+Multiplier: 4.31x
+To Multiply Your Earnings By 5x You Needed To Invest $5.80 Per Day
+
+
+Investing on Extreme Greed Days Only
+Days Invested: 200
+Average Price Per BTC: $32047.25
+Total Invested: $1000.00
+Total Bitcoin: 0.04646 BCT
+Final Value: $3109.03
+Percentage Yield: 210.90%
+Total Profit: $2109.03
+To Profit 10k You Needed To Invest: $23.71 Per Day
+Multiplier: 3.11x
+To Multiply Your Earnings By 5x You Needed To Invest $8.04 Per Day
+
+
+Best Idea: Investing only when there is Fear
+Percentage Yield: 565.53%
+
+
+Worst Idea: Investing only when there is Extreme Greed
+Percentage Yield: 210.90%
+
+
+
+
+Interpolation:
+
+
+Investing $5 a day is a beginner investment strategy that gained popularity a few years ago. This is because when investing everyday, you are betting on the stock price steadily increasing over time, and are basically evening out any volatility in the investment. I thought it would be fun to see how much a person would make doing this with bitcoin, which has exploded in price over recent years. I also wanted to see if you’d be a smarter investor trading when the fear-greed index, a metric that tries to predict if the market is overvalued or not, was high or low. I also included how much you would have needed to invest per day to make 10k or 5x your investment to show that only a small amount could have a huge effect with something as hot as bitcoin. Overall it found that a person investing just $5 every day over the six year stretch in the data would leave them with almost 50k in profit, not bad for the price of a coffee (in Boston) everyday.
+
+
+Building Code:
+Everything should be available in github to run this code. The file I worked with had 2224 entries, but was able to fit in github.
